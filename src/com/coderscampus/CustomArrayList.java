@@ -6,7 +6,14 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public boolean add(T item) {
-		return add(arraySize, item);
+		if (items.length < arraySize)
+			throw new IndexOutOfBoundsException("Array out of bound");
+		if (items.length == arraySize) {
+			items = increaseArraySize();
+		}
+		items[arraySize] = item;
+		arraySize++;
+		return true;
 	}
 
 	@Override
@@ -53,5 +60,10 @@ public class CustomArrayList<T> implements CustomList<T> {
 		arraySize--;
 		return removedItem;
 	}
+
+	/*
+	 * @Override public boolean add(T item) { // TODO Auto-generated method stub
+	 * return false; }
+	 */
 
 }
